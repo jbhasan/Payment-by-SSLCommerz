@@ -1,0 +1,30 @@
+{
+    "name": "sayeed/payment-by-sslcommerz",
+    "description": "Payment by SSL Commerz",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Md. Hasan Sayeed",
+            "email": "jbhasan@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0",
+        "laravel/framework":"^8.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sayeed\\PaymentBySslcommerz\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sayeed\\PaymentBySslcommerz\\Providers\\PaymentBySslcommerzServiceProvider"
+            ]
+        }
+    }
+}
