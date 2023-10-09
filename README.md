@@ -8,18 +8,22 @@
 
 ##### Step 1
 
-`composer require sayeed/payment-by-sslcommerz`
+```
+composer require sayeed/payment-by-sslcommerz
+```
 
 ##### Step 2
 
-`php artisan migrate`
+```
+php artisan migrate
+```
 
 ##### Step 3
 
 Put below information in `.env` file
 
--   `IS_LOCALHOST=true` -> for local environment TRUE other then FALSE
--   `SSLCZ_TESTMODE=true` -> for test environment TRUE and for LIVE FALSE
+-   `IS_LOCALHOST=true` (for local environment TRUE other then FALSE)
+-   `SSLCZ_TESTMODE=true` (for test environment TRUE and for LIVE FALSE)
 -   `SSLCZ_STORE_ID=<STORE_ID>`
 -   `SSLCZ_STORE_PASSWORD=<STORE_PASSWORD>`
 -   `SSLCZ_SUCCESS_URL=/success_payment`
@@ -35,6 +39,8 @@ Submit your request to `/pay` route with params:
 -   customer_email
 -   customer_mobile
 -   product_name
+-   customer_address [optional]
+-   customer_country [optional]
 
 ##### Step 5 (Uses)
 
