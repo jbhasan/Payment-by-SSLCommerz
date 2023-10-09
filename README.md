@@ -30,6 +30,10 @@ Put below information in `.env` file
 -   `SSLCZ_FAILED_URL=/failed_payment`
 -   `SSLCZ_CANCEL_URL=/cancel_payment`
 
+```
+php artisan config:clear
+```
+
 ##### Step 4 (Uses)
 
 Submit your request to `/pay` route with params:
