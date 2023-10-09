@@ -55,5 +55,8 @@ Submit your request to `/pay` route with params:
 
 ##### Step 5 (Uses)
 
-After successfull request you will get a base64 encoded data with status and message, which is shown as:
-`{"status":"completed","message":"Transaction is successfully Completed"}`
+After successful request you will get a base64 encoded data with status and message, which is shown as:
+
+`{"status":"completed", "transaction_id":"63jk232h323d", "message":"Transaction is successfully Completed"}`
+
+Then you can get full response from `sslcommerz_orders` table by using `transaction_id`

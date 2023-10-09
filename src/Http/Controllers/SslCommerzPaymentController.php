@@ -115,16 +115,16 @@ class SslCommerzPaymentController extends Controller
                 DB::table('sslcommerz_orders')
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Complete', 'response_data' => base64_encode(json_encode($request->all()))]);
-                return ["status" => "completed", "message" => "Transaction is successfully Completed"];
+                return ["status" => "completed", 'transaction_id' => $tran_id, "message" => "Transaction is successfully Completed"];
             }
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            return ["status" => "completed", "message" => "Transaction is successfully Completed"];
+            return ["status" => "completed", 'transaction_id' => $tran_id, "message" => "Transaction is successfully Completed"];
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
-            return ["status" => "Invalid", "message" => "Invalid Transaction"];
+            return ["status" => "Invalid", 'transaction_id' => $tran_id, "message" => "Invalid Transaction"];
         }
     }
 
@@ -139,11 +139,11 @@ class SslCommerzPaymentController extends Controller
             DB::table('sslcommerz_orders')
                 ->where('transaction_id', $tran_id)
                 ->update(['status' => 'Failed', 'response_data' => base64_encode(json_encode($request->all()))]);
-				return ["status" => "failed", "message" => "Transaction is Failed"];
+				return ["status" => "failed", 'transaction_id' => $tran_id, "message" => "Transaction is Failed"];
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
-            return ["status" => "completed", "message" => "Transaction is already Successful"];
+            return ["status" => "completed", 'transaction_id' => $tran_id, "message" => "Transaction is already Successful"];
         } else {
-            return ["status" => "invalid", "message" => "Transaction is Invalid"];
+            return ["status" => "invalid", 'transaction_id' => $tran_id, "message" => "Transaction is Invalid"];
         }
     }
 
@@ -158,11 +158,11 @@ class SslCommerzPaymentController extends Controller
             DB::table('sslcommerz_orders')
                 ->where('transaction_id', $tran_id)
                 ->update(['status' => 'Canceled', 'response_data' => base64_encode(json_encode($request->all()))]);
-				return ["status" => "cancel", "message" => "Transaction is Cancel"];
+				return ["status" => "cancel", 'transaction_id' => $tran_id, "message" => "Transaction is Cancel"];
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
-            return ["status" => "completed", "message" =>  "Transaction is already Successful"];
+            return ["status" => "completed", 'transaction_id' => $tran_id, "message" =>  "Transaction is already Successful"];
         } else {
-            return ["status" => "invalid", "message" => "Transaction is Invalid"];
+            return ["status" => "invalid", 'transaction_id' => $tran_id, "message" => "Transaction is Invalid"];
         }
     }
 
@@ -188,14 +188,14 @@ class SslCommerzPaymentController extends Controller
                     DB::table('sslcommerz_orders')
                         ->where('transaction_id', $tran_id)
                         ->update(['status' => 'Complete', 'response_data' => base64_encode(json_encode($request->all()))]);
-					return ["status" => "completed", "message" => "Transaction is successfully Completed"];
+					return ["status" => "completed", 'transaction_id' => $tran_id, "message" => "Transaction is successfully Completed"];
                 }
             } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
                 #That means Order status already updated. No need to udate database.
-                return ["status" => "completed", "message" => "Transaction is already successfully Completed"];
+                return ["status" => "completed", 'transaction_id' => $tran_id, "message" => "Transaction is already successfully Completed"];
             } else {
                 #That means something wrong happened. You can redirect customer to your product page.
-                return ["status" => "invalid", "message" => "Invalid Transaction"];
+                return ["status" => "invalid", 'transaction_id' => $tran_id, "message" => "Invalid Transaction"];
             }
         } else {
             return ["status" => "invalid", "message" => "Invalid Data"];
