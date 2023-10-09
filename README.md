@@ -42,6 +42,13 @@ Submit your request to `/pay` route with params:
 -   customer_address [optional]
 -   customer_country [optional]
 
+###### [Custom value on your requirement]
+
+-   value_a
+-   value_b
+-   value_c
+-   value_d
+
 ##### Step 5 (Uses)
 
 After successfull request you will get a base64 encoded data with status and message, which is shown as:
