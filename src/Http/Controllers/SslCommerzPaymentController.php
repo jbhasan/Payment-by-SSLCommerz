@@ -39,6 +39,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
+		$post_data['multi_card_name'] = $requested_data['multi_card_name'] ?? null;
         $post_data['cus_name'] = $requested_data['customer_name'];
         $post_data['cus_email'] = $requested_data['customer_email'];
         $post_data['cus_add1'] = $requested_data['customer_address'] ?? 'Customer Address';

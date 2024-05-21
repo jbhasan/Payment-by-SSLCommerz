@@ -204,6 +204,10 @@ class SslCommerzNotification extends AbstractSslCommerz
         $response = $this->callToApi($this->data, $header, $this->config['connect_from_localhost']);
 
         $formattedResponse = $this->formatResponse($response, $type, $pattern); // Here we will define the response pattern
+		$gw_list = array_column($formattedResponse['desc'], null, 'gw');
+		if(isset($this->data['multi_card_name']) && $this->data['multi_card_name'] && isset($gw_list[$this->data['multi_card_name']]) && $gw_list[$this->data['multi_card_name']]) {
+			$formattedResponse['GatewayPageURL'] = $gw_list[$this->data['multi_card_name']]['redirectGatewayURL'];
+		}
 
         if ($type == 'hosted') {
             if (!empty($formattedResponse['GatewayPageURL'])) {
